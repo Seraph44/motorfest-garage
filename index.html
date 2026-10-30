@@ -1,0 +1,483 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101114">
+  <title>Motorfest Garage</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ===== ÉCRAN D'ACCUEIL ===== -->
+
+  <section id="welcomeScreen" class="welcome-screen">
+
+    <div class="welcome-top">
+      <div class="logo">MOTORFEST<span> GARAGE</span></div>
+    </div>
+
+    <div class="welcome-content">
+      <p class="eyebrow">THE CREW MOTORFEST · PERSONAL COLLECTION</p>
+
+      <h1>
+        YOUR CARS.<br>
+        <span>YOUR LEGACY.</span>
+      </h1>
+
+      <p class="welcome-description">
+        Bienvenue dans ton univers automobile.
+        Construis, organise et admire ta collection.
+      </p>
+
+      <button id="enterGarage" class="enter-button">
+        ENTRER DANS LE GARAGE <span>→</span>
+      </button>
+    </div>
+
+    <div class="welcome-bottom">
+      <span>PERSONAL AUTOMOTIVE COLLECTION</span>
+      <span>MOTORFEST GARAGE · V1.0</span>
+    </div>
+
+  </section>
+
+
+  <!-- ===== PANNEAU OPTIONS GLOBAL ===== -->
+
+  <div id="optionsPanel" class="options-panel" hidden>
+
+    <button id="closeOptions" class="close-options">✕</button>
+
+    <p class="eyebrow">CONFIGURATION</p>
+    <h2>Options</h2>
+
+    <label class="option-line">
+      <span>Animations visuelles</span>
+      <input type="checkbox" id="animationsOption" checked>
+    </label>
+
+    <p class="option-note">
+      Active ou désactive les animations de l'interface.
+    </p>
+
+  </div>
+
+
+  <!-- ===== APPLICATION GARAGE ===== -->
+
+  <div id="garageApp" hidden>
+
+    <header class="topbar">
+
+      <div class="logo">MOTORFEST<span> GARAGE</span></div>
+
+      <div class="topbar-actions">
+
+        <button id="returnHome" class="home-button">
+          ⌂ ACCUEIL
+        </button>
+
+        <button id="addCar" class="header-add-button">
+          + AJOUTER
+        </button>
+
+        <button id="garageOptions" class="options-button">
+          ⚙ OPTIONS
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <main>
+
+      <!-- ===== HERO ===== -->
+
+      <section class="hero">
+
+        <p class="eyebrow">THE CREW MOTORFEST · MY PERSONAL GARAGE</p>
+
+        <h1>
+          MY DREAM<br>
+          <span>COLLECTION.</span>
+        </h1>
+
+        <p class="subtitle">
+          Toutes mes voitures. Une seule destination.
+        </p>
+
+      </section>
+
+
+      <!-- ===== STATISTIQUES ===== -->
+
+      <section class="stats">
+
+        <div class="stat">
+          <span>COLLECTION</span>
+          <strong id="totalCars">0</strong>
+        </div>
+
+        <div class="stat">
+          <span>POSSEDÉES</span>
+          <strong id="ownedCars">0</strong>
+        </div>
+
+        <div class="stat">
+          <span>À ACHETER</span>
+          <strong id="wantedCars">0</strong>
+        </div>
+
+      </section>
+
+
+      <!-- ===== DASHBOARD ===== -->
+
+      <section class="dashboard">
+
+        <div class="section-heading">
+
+          <div>
+            <p class="eyebrow">YOUR COLLECTION DATA</p>
+            <h2>Garage overview</h2>
+          </div>
+
+          <span class="dashboard-tag">LIVE STATISTICS</span>
+
+        </div>
+
+
+        <div class="dashboard-grid">
+
+          <div class="dashboard-card">
+            <span>VALEUR POSSÉDÉE</span>
+            <strong id="garageValue">0 CR</strong>
+            <small>Valeur estimée du garage</small>
+          </div>
+
+          <div class="dashboard-card">
+            <span>MARQUES</span>
+            <strong id="brandCount">0</strong>
+            <small>Marques représentées</small>
+          </div>
+
+          <div class="dashboard-card">
+            <span>PUISSANCE CUMULÉE</span>
+            <strong id="totalPower">0 CH</strong>
+            <small>Puissance des véhicules possédés</small>
+          </div>
+
+          <div class="dashboard-card highlight-card">
+            <span>MONSTRE DU GARAGE</span>
+            <strong id="topCar">---</strong>
+            <small id="topCarPower">En attente de véhicules</small>
+          </div>
+
+        </div>
+
+
+        <div class="distribution">
+
+          <div class="distribution-heading">
+            <h3>Collection status</h3>
+
+            <span id="distributionText">
+              0 possédée · 0 à acheter
+            </span>
+          </div>
+
+          <div class="distribution-bar">
+            <div id="ownedBar"></div>
+            <div id="wantedBar"></div>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ===== COLLECTION ===== -->
+
+      <section class="collection">
+
+        <div class="section-heading">
+
+          <div>
+            <p class="eyebrow">YOUR AUTOMOTIVE WORLD</p>
+            <h2>Ma collection</h2>
+          </div>
+
+          <input
+            id="searchCar"
+            type="search"
+            placeholder="Rechercher une voiture..."
+          >
+
+        </div>
+
+
+        <div id="carGrid" class="car-grid">
+
+          <div class="empty">
+            <span>🏎️</span>
+            <h3>Ton garage attend ses premières voitures</h3>
+            <p>
+              Ajoute ton premier véhicule pour commencer ta collection.
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- ===== FICHE VÉHICULE RECTO-VERSO ===== -->
+
+    <div id="carDetailsOverlay" class="car-details-overlay" hidden>
+
+      <div class="car-details-container">
+
+        <button
+          type="button"
+          id="closeCarDetails"
+          class="close-car-details"
+          aria-label="Fermer la fiche véhicule"
+        >
+          ✕
+        </button>
+
+
+        <div class="car-details-heading">
+
+          <p class="eyebrow">MOTORFEST GARAGE · VEHICLE PROFILE</p>
+
+          <span class="car-details-instruction">
+            CLIQUE OU FAIS GLISSER POUR RETOURNER LA CARTE
+          </span>
+
+        </div>
+
+
+        <!-- CARTE RETOURNABLE -->
+
+        <div
+          id="carFlipCard"
+          class="car-flip-card"
+          tabindex="0"
+          role="button"
+          aria-label="Retourner la fiche du véhicule"
+        >
+
+          <div class="car-flip-inner">
+
+
+            <!-- ===== RECTO ===== -->
+
+            <div class="car-card-face car-card-front">
+
+              <div class="car-card-image-container">
+
+                <img
+                  id="detailCarImage"
+                  class="car-detail-image"
+                  src=""
+                  alt="Photo du véhicule"
+                >
+
+                <div class="car-image-overlay"></div>
+
+                <span id="detailCarStatus" class="car-detail-status">
+                  COLLECTION
+                </span>
+
+              </div>
+
+
+              <div class="car-front-content">
+
+                <p id="detailCarBrand" class="eyebrow">
+                  MARQUE
+                </p>
+
+                <h2 id="detailCarName">
+                  NOM DU VÉHICULE
+                </h2>
+
+                <div class="car-front-bottom">
+
+                  <span id="detailCarYear">
+                    ANNÉE
+                  </span>
+
+                  <span class="flip-indicator">
+                    VOIR LES CARACTÉRISTIQUES ↻
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- ===== VERSO ===== -->
+
+            <div class="car-card-face car-card-back">
+
+              <div class="car-back-header">
+
+                <div>
+                  <p class="eyebrow">TECHNICAL SPECIFICATIONS</p>
+
+                  <h2 id="detailCarBackName">
+                    NOM DU VÉHICULE
+                  </h2>
+                </div>
+
+                <span class="back-badge">MOTORFEST</span>
+
+              </div>
+
+
+              <!-- PERFORMANCES -->
+
+              <div class="spec-section">
+
+                <h3>PERFORMANCES</h3>
+
+                <div class="spec-grid">
+
+                  <div class="spec-item">
+                    <span>VITESSE MAXIMALE</span>
+                    <strong id="detailTopSpeed">---</strong>
+                  </div>
+
+                  <div class="spec-item">
+                    <span>0 À 100 KM/H</span>
+                    <strong id="detailAcceleration">---</strong>
+                  </div>
+
+                  <div class="spec-item">
+                    <span>PUISSANCE</span>
+                    <strong id="detailPower">---</strong>
+                  </div>
+
+                  <div class="spec-item">
+                    <span>COUPLE</span>
+                    <strong id="detailTorque">---</strong>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <!-- MOTORISATION -->
+
+              <div class="spec-section">
+
+                <h3>MOTORISATION</h3>
+
+                <div class="spec-grid">
+
+                  <div class="spec-item">
+                    <span>MOTEUR</span>
+                    <strong id="detailEngine">---</strong>
+                  </div>
+
+                  <div class="spec-item">
+                    <span>CYLINDRÉE</span>
+                    <strong id="detailDisplacement">---</strong>
+                  </div>
+
+                  <div class="spec-item">
+                    <span>TRANSMISSION</span>
+                    <strong id="detailTransmission">---</strong>
+                  </div>
+
+                  <div class="spec-item">
+                    <span>BOÎTE DE VITESSES</span>
+                    <strong id="detailGearbox">---</strong>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <!-- INFORMATIONS COMPLÉMENTAIRES -->
+
+              <div class="spec-section">
+
+                <h3>INFORMATIONS</h3>
+
+                <div class="spec-grid">
+
+                  <div class="spec-item">
+                    <span>POIDS</span>
+                    <strong id="detailWeight">---</strong>
+                  </div>
+
+                  <div class="spec-item">
+                    <span>CATÉGORIE</span>
+                    <strong id="detailCategory">---</strong>
+                  </div>
+
+                  <div class="spec-item">
+                    <span>PRIX</span>
+                    <strong id="detailPrice">---</strong>
+                  </div>
+
+                  <div class="spec-item">
+                    <span>ANNÉE</span>
+                    <strong id="detailYear">---</strong>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="car-back-footer">
+                <span>MOTORFEST GARAGE</span>
+                <span class="flip-indicator">
+                  RETOURNER ↻
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="car-details-bottom">
+          <span>PERSONAL AUTOMOTIVE COLLECTION</span>
+          <span>THE CREW MOTORFEST</span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <footer>
+      MOTORFEST GARAGE · BUILT FOR CAR ENTHUSIASTS
+    </footer>
+
+  </div>
+
+
+  <!-- ===== JAVASCRIPT ===== -->
+
+  <script src="app.js"></script>
+
+</body>
+</html>
